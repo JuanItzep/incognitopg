@@ -72,7 +72,7 @@ start
     }
 
 definition
-  = _ identifier:identifier _ "=" _ expr:repeatedExpression _ ";"? _ {
+  = _ identifier:identifier _ "=" _ expr:repeatedExpression _ ";" _ {
       return { identifier, expr };
     }
 

@@ -465,12 +465,14 @@ function peg$parse(input, options) {
             s8 = peg$FAILED;
             if (peg$silentFails === 0) { peg$fail(peg$e1); }
           }
-          if (s8 === peg$FAILED) {
-            s8 = null;
+          if (s8 !== peg$FAILED) {
+            s9 = peg$parse_();
+            peg$savedPos = s0;
+            s0 = peg$f1(s2, s6);
+          } else {
+            peg$currPos = s0;
+            s0 = peg$FAILED;
           }
-          s9 = peg$parse_();
-          peg$savedPos = s0;
-          s0 = peg$f1(s2, s6);
         } else {
           peg$currPos = s0;
           s0 = peg$FAILED;
