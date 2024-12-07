@@ -77,9 +77,10 @@ definition
       return { identifier, expr };
     }
 
+
 choiceExpression
-  = head:repeatedExpression
-    tail:(_ "/" _ repeatedExpression)* {
+  = _ head:concat
+    tail:(_ "/" _ concat)* {
       if (tail.length === 0) {
         return head;
       }
@@ -89,13 +90,15 @@ choiceExpression
       };
     }
 
+concat = 
+  (_ repeatedExpression _)+
+
 repeatedExpression
     = expr:expression _ Operator:("*"/"+"/"?") {
           if (Operator[0]==="*") return { type: 'kleeneStar', expr };
         if (Operator[0]==="+") return { type: 'OneOrMore', expr };
         if (Operator[0]==="?") return { type: 'ZeroOrOne', expr };
         }
-    /(_ expression _)+
     / expression
 
 
@@ -124,9 +127,13 @@ identifier "identifier"
     }
 
 range "range"
-  = "[" startChar:unicodeChar "-" endChar:unicodeChar "]" {
+  = "[" ranges+ "]" 
+
+ranges
+  = startChar:unicodeChar "-" endChar:unicodeChar {
       return generateUnicodeRange(startChar, endChar);
     }
+  /"_"
 
 list "list"
   = "[" chars:character* "]" {
@@ -145,7 +152,7 @@ string "string"
   = "\"" text:[^\"]* "\"" {
       return text.join('');
     }
-  / "'" text1:[^\']* "'" {
+  / "\'" text1:[^\']* "\'" {
       return text1.join('');
     }
 
