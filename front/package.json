@@ -1,0 +1,62 @@
+{
+  "name": "front",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://juanitzep.github.io/incognitopg",
+  "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/react": "^18.0.0",
+    "axios": "^1.7.7",
+    "bootstrap": "^5.3.3",
+    "lodash": "^4.17.21",
+    "monaco-editor": "^0.52.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
+    "react-scripts": "5.0.1",
+    "sweetalert2": "^11.14.4",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "prestart": "npm run compile",
+    "start": "concurrently \"react-scripts start\" \"npm run watch-pegjs\"",
+    "prebuild": "npm run compile",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "compile": "peggy --format es -o src/logic/grammar/grammar.jsx src/logic/grammar/grammar.pegjs",
+    "watch-pegjs": "chokidar \"src/logic/grammar/grammar.pegjs\" -c \"npm run compile && echo Updated grammar.js\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "autoprefixer": "^10.4.20",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.1.0",
+    "peggy": "^4.2.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "ts-node": "^10.9.2",
+    "typescript": "^4.9.5"
+  }
+}

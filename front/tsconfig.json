@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* Básicas */
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx",
+
+    /* Manejo de archivos */
+    "allowJs": true,
+    "checkJs": false,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+
+    /* Resolución de módulos */
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    /* Opciones estrictas */
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Optimización */
+    "skipLibCheck": true,
+    "incremental": true
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "src/logic/grammar/grammar.js"
+  ]
+}
